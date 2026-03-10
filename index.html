@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP EDUCATIONAL PORTAL | LAKSHYA</title>
+    <style>
+        /* Premium Variables */
+        :root {
+            --bg-deep: #020617;
+            --flam-color: #00d4ff;
+            --vist-color: #00ffaa;
+            --gold: #facc15;
+            --glass: rgba(15, 23, 42, 0.85);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: var(--bg-deep);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 212, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 170, 0.1) 0px, transparent 50%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 15px;
+        }
+
+        /* Lakshya Name Animation */
+        .dev-header {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 8s linear infinite;
+            margin-bottom: 25px;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0%; }
+            100% { background-position: 400%; }
+        }
+
+        /* Glass Container */
+        .portal-box {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            padding: 40px 25px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.02);
+            position: relative;
+        }
+
+        .page { display: none; transform: scale(0.9); opacity: 0; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .active { display: block; transform: scale(1); opacity: 1; }
+
+        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 40px; font-weight: 800; letter-spacing: -1px; }
+
+        /* VIP Buttons with 3D Physics */
+        .btn-stack { display: flex; flex-direction: column; gap: 25px; }
+
+        .vip-button {
+            height: 70px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .vip-button:active { transform: scale(0.9) rotate(-1deg); }
+
+        .btn-flam {
+            background: linear-gradient(135deg, #0088ff, #00d4ff);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-vist {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Chapter Cards */
+        .chapter-card {
+            background: rgba(255, 255, 255, 0.04);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .chapter-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--flam-color);
+            transform: translateX(10px);
+        }
+
+        .title-row { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; display: block; }
+
+        .video-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #ff0055, #ff5500);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+            transition: 0.3s;
+        }
+
+        .video-pill:hover { letter-spacing: 1px; box-shadow: 0 0 20px #ff0055; }
+
+        .back-nav {
+            margin-top: 30px;
+            text-align: center;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+        }
+
+        .footer-dev { margin-top: 30px; font-size: 0.8rem; opacity: 0.5; font-weight: 700; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div class="dev-header">DEVELOPED BY LAKSHYA</div>
+
+    <div class="portal-box">
+        
+        <div id="home" class="page active">
+            <h1>CHOOSE BOOK</h1>
+            <div class="btn-stack">
+                <button class="vip-button btn-flam" onclick="changePage('flam-page')">Flamingo</button>
+                <button class="vip-button btn-vist" onclick="changePage('vist-page')">Vistas</button>
+            </div>
+        </div>
+
+        <div id="flam-page" class="page">
+            <h2 style="color:var(--flam-color); margin-bottom:20px;">📘 Flamingo Story</h2>
+            
+            <div class="chapter-card">
+                <span class="title-row">1. The Last Lesson</span>
+                <a href="https://youtu.be/ueUjhbyXMqU?si=ssylV-7ehMi7bVe3" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">2. Lost Spring</span>
+                <a href="https://youtu.be/1nUU6wIEqcE?si=O0AbXaNEHb6BXfEE" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">3. Deep Water</span>
+                <a href="https://youtu.be/O0mtKGRT3zE?si=odAah-FWRV_5RaJX" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">4. The Rattrap</span>
+                <a href="https://youtu.be/CImL9tobpSE?si=ckyGj2BoJ3pQUtrK" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">5. Indigo</span>
+                <a href="https://youtu.be/Ttg_gmJoHeE?si=ZN6B6mE2Ca_8bgqV" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">6. Poets and Pancakes</span>
+                <a href="https://youtu.be/79PjRolV8EU?si=9O8Uyog6tnZxoSPF" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">7. The Interview</span>
+                <a href="https://youtu.be/ZP2Lgj1f6MA?si=nM2_vE58hq5ezbU6" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">8. Going Places</span>
+                <a href="https://youtu.be/WvruK0JEIsM?si=cvCtPrAK1nm8Em6P" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <span class="back-nav" onclick="changePage('home')">← RETURN TO DASHBOARD</span>
+        </div>
+
+        <div id="vist-page" class="page">
+            <h2 style="color:var(--vist-color); margin-bottom:20px;">📗 Vistas Stories</h2>
+
+            <div class="chapter-card">
+                <span class="title-row">1. The Third Level</span>
+                <a href="https://youtu.be/fsfdXY9d3lI?si=BL8oOGcIcBMDsWqM" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">2. The Tiger King</span>
+                <a href="https://youtu.be/zOoitDwLvTg?si=9wlEY3BfcpHpnX_3" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">3. Journey to the End of the Earth</span>
+                <a href="https://youtu.be/UmRBeNxrGw8?si=yGoURlvDtBdqN8s2" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">4. The Enemy</span>
+                <a href="https://youtu.be/LYN3HDjKTSw?si=na81J35J2PGcLe4A" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">5. Should Wizard Hit Mommy?</span>
+                <a href="https://youtu.be/fIOeqP_JT20?si=__AxKuCis5MTx9zG" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">6. On the Face of It</span>
+                <a href="https://youtu.be/k3AV33eeTyQ?si=diTMlqFGOj4LSEbM" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">7. Evans Tries an O-Level</span>
+                <a href="https://youtu.be/o7mCU7WpDvo?si=Y_Qt-GkLLQFSU_AM" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <div class="chapter-card">
+                <span class="title-row">8. Memories of Childhood</span>
+                <a href="https://youtu.be/Y2XIGtAUCSY?si=TBjJC2pGoP9cAPHu" class="video-pill">▶ WATCH NOW</a>
+            </div>
+
+            <span class="back-nav" onclick="changePage('home')">← RETURN TO DASHBOARD</span>
+        </div>
+
+    </div>
+
+    <div class="footer-dev">LAKSHYA PRODUCTION © 2026</div>
+
+    <script>
+        function changePage(targetId) {
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+            });
+            setTimeout(() => {
+                document.getElementById(targetId).classList.add('active');
+            }, 50);
+        }
+    </script>
+
+</body>
+</html>
